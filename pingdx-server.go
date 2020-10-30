@@ -1,8 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 )
+
+type compareParams struct {
+	Lista string `json:"lista"`
+	Listb string `json:"listb"`
+}
 
 func main() {
 	gin.SetMode(gin.DebugMode) //todo, prod mode
@@ -14,7 +20,11 @@ func main() {
 		})
 	})
 
-	router.GET("/compare", func(c *gin.Context) {
+	router.POST("/compare", func(c *gin.Context) {
+		params := &compareParams{}
+		_ = c.BindJSON(params)
+		fmt.Println(params)
+		fmt.Println(params.Lista)
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
