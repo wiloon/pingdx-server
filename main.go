@@ -6,6 +6,7 @@ import (
 	"github.com/emirpasic/gods/sets/hashset"
 	"github.com/gin-gonic/gin"
 	"sort"
+	"strconv"
 	"strings"
 )
 
@@ -36,11 +37,18 @@ func main() {
 	})
 	router.GET("/newline-to-comma", func(c *gin.Context) {
 		bar := c.Query("bar")
+		addQuotation, _ := strconv.ParseBool(c.Query("addsinglequotationmarks"))
 		arr := strings.Split(bar, "\n")
 
 		var foo bytes.Buffer
 		for _, v := range arr {
+			if addQuotation {
+				foo.WriteString("'")
+			}
 			foo.WriteString(strings.TrimSpace(v))
+			if addQuotation {
+				foo.WriteString("'")
+			}
 			foo.WriteString(",")
 		}
 		out := foo.String()
