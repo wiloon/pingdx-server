@@ -10,7 +10,7 @@ WORKDIR /workdir
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux GOPROXY=https://goproxy.io go build -a -o pingdx-server main.go
+RUN CGO_ENABLED=0 GOOS=linux GOPROXY=https://goproxy.cn go build -a -o pingdx-server main.go
 
 # 生产镜像
 FROM alpine AS prod
