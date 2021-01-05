@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/emirpasic/gods/sets/hashset"
 	"github.com/gin-gonic/gin"
+	"pingdx-server/b64"
 	"sort"
 	"strconv"
 	"strings"
@@ -24,6 +25,8 @@ type Result struct {
 func main() {
 	gin.SetMode(gin.DebugMode) //todo, prod mode
 	router := gin.Default()
+	router.GET("/base64-decode", b64.DecodeWrapper)
+
 	// ping
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
