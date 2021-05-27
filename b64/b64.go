@@ -30,3 +30,15 @@ func DecodeWrapper(c *gin.Context) {
 	})
 	return
 }
+
+// EncodeWrapper string > base64
+func EncodeWrapper(c *gin.Context) {
+	str := c.Query("str")
+	fmt.Println(str)
+	out := base64.RawURLEncoding.EncodeToString([]byte(str))
+	fmt.Println(out)
+	c.JSON(200, gin.H{
+		"encoded": out,
+	})
+	return
+}

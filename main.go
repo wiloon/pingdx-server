@@ -26,6 +26,7 @@ func main() {
 	gin.SetMode(gin.DebugMode) //todo, prod mode
 	router := gin.Default()
 	router.GET("/base64-decode", b64.DecodeWrapper)
+	router.GET("/base64-encode", b64.EncodeWrapper)
 
 	// ping
 	router.GET("/ping", func(c *gin.Context) {
